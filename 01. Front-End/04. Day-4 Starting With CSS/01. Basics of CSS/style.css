@@ -1,0 +1,58 @@
+
+/* Universal selector  */
+*{
+    color: purple;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+/* element selector  */
+p{
+    color: red;
+}
+
+/* class selector  */
+.aku{
+    color: rgb(54, 54, 54);
+}
+
+.b{
+    color: rgb(0, 255, 0);
+}
+
+/* id selector  */
+#chachi {
+    color: yellow;
+}
+
+/* attribute selector  */
+input[type="text"]{
+    color: rgb(218, 0, 0);
+    font-size: 1.01rem;
+}
+
+/* sslector precedence  */
+
+/* id >> class >> element selector  */
+
+/* .div #paraid{
+    color: rgb(231, 0, 252);
+} */
+
+.div p{
+    color: yellow;
+}
+
+.div #paraid{
+    color: rgb(231, 0, 252);
+}
+
+.div .paraclass{
+    color: white;
+}
+
+

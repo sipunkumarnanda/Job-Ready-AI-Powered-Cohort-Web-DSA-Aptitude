@@ -1,0 +1,64 @@
+*{
+    /* margin: 0;
+    padding: 0;
+    box-sizing: border-box; */
+
+    /* font-family: gilroy; */
+    font-family: 'Helvetica';
+}
+body{
+    background-color: black;
+    color: white; 
+}
+
+#card{
+    width: 200px ;
+    height: 300px;
+    background-color: red;
+    padding: 20px;
+    /* margin: 120px;  */
+
+    /* box-sizing: content-box;   By default set to content box */ 
+
+    box-sizing: border-box;
+}
+
+
+p{
+    border-width: 6px;
+    border-color: green;
+    border-style: solid;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* background image  */
+.bg{
+    width: 300px;
+    height: 150px;
+    margin: 20px;
+    background-image: url(https://plus.unsplash.com/premium_photo-1708110921398-1fc68e98eacc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+}
+
+/* linear linearGradient  */
+.bgl{
+    width: 300px;
+    height: 150px;
+    margin: 20px;
+    /* background : linear-gradient(to right, red, yellow); */
+    /* background : linear-gradient(to top, red, yellow); */
+    background : linear-gradient(to right bottom, red, yellow);
+}
+
+/* box shadow  */
+
+.shadow{
+    width: 300px;
+    height: 150px;
+    margin: 20px;
+    background-color: wheat;
+
+    box-shadow: 10px 20px 20px white;
+}

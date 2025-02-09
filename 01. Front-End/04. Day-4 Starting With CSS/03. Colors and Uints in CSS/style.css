@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    /* font-family: gilroy; */
+    font-family: 'Helvetica';
+}
+body{
+    background-color: black;
+    color: white; 
+}
+
+p{
+    /* background-color: red; */
+    /* background-color: rgb(90,100,100); */
+
+    /* background-color: rgba(0, 90, 170, 0.5); */
+
+    background-color: #1ae100;
+}
