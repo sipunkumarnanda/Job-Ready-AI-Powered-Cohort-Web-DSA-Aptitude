@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+
+    /* font-family: gilroy; */
+    font-family: 'Helvetica';
+}
+
+/* linearGradient and radialGradient  */
+#box{
+    width: 200px;
+    height: 200px;
+    /* background-color: crimson; */
+    background: linear-gradient(to right bottom , violet, indigo, blue, green,orange, yellow );
+
+    /* background: radial-gradient(red, blue); */
+
+    /* border-radius: 50%; */
+}
+
+/* background image  */
+.bgi{
+    width: 300px;
+    height: 300px;
+    /* background-color: chartreuse; */
+    background-image: url(https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* full screen image  */
+.bg{
+    width: 100%;
+    height: 100%;
+    background-image: url(https://images.unsplash.com/photo-1536565206219-37a3cf48b2d3?q=80&w=2123&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: top;
+}
+
+/* pixel and %  */
+.box-1{
+    width: 40%;
+    height: 40%;
+    background-color: crimson;
+}
+
+/* POsition */
+.car-1{
+    height: 200px;
+    width: 200px;
+    background-color: crimson;
+    /* margin: 40px; */
+    /* margin-top: 50px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+}
+.car-2{
+    height: 200px;
+    width: 200px;
+    background-color: rgb(43, 220, 20);
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    z-index: 10;
+}
+.car-3{
+    height: 200px;
+    width: 200px;
+    background-color: rgb(33, 20, 220);
+
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 11;
+}
+
+/* Center by Position absolute top 50% left 50% Problem facing */
+.box-2{
+    height: 200px;
+    width: 200px;
+    background-color: yellow;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* position - Absolute And Relative */
+.box-3{
+    height: 300px;
+    width: 300px;
+    background-color: wheat;
+
+    position: relative;
+}
+.innerBox{
+    height: 50%;
+    width: 50%;
+    background-color: red;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Display FLex and its Properties  */
+.parent{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    justify-content: space-evenly;
+
+    /* flex-direction: column; */
+    /* flex-direction: column; */
+    flex-direction: column;
+}
+
+.child-1{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
+.child-2{
+    height: 100px;
+    width: 100px;
+    background-color: rgb(210, 255, 85);
+}
+.child-3{
+    height: 100px;
+    width: 100px;
+    background-color: rgb(0, 202, 34);
+}
+.child-4{
+    height: 100px;
+    width: 100px;
+    background-color: rgb(0, 13, 255);
+}
+
