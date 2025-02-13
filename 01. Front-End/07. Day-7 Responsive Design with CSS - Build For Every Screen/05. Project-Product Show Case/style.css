@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+      /* font-family: gilroy; */
+      font-family: 'Helvetica';
+}
+
+html,
+body{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    color: white;
+    /* font-size: 1.33vw; */
+    display: grid;
+    justify-items: center; /* Centers horizontally */
+  align-items: center
+}
+
+.head{
+    padding-top: 10px;
+    color: black;
+    text-align: center;
+}
+.head h1{
+    font-size: 1.4rem;
+    letter-spacing: -1px;
+    font-weight: 600;
+}
+.head p{
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.container{
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    width: 80vw;
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr); */
+    gap: 2rem;
+}
+
+.items{
+    height: 55vh;
+    padding: 2px;
+    background-color: white;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 8px;
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+.items img{
+    padding: 10px 10px 5px 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.description{
+    text-align: center;
+}
+.description h2{
+    font-size: 0.8rem;
+}
+.description p{
+    font-size: 0.8rem;
+}
+.description h4{
+    font-size: 0.8rem;
+}
+
+.bottom{
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(199, 199, 199);
+    text-align: center;
+    color: gray;
+}
+
+@media(min-width: 760px){
+    .container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .items{
+        height: 60vh;
+    }
+
+    .description h2{
+        font-size: 0.8rem;
+    }
+    .description p{
+        font-size: 0.75rem;
+    }
+    .description h4{
+        font-size: 0.8rem;
+    }
+
+    .head h1{
+        font-size: 1rem;
+    }
+    .head p{
+        font-size: 0.8rem;
+    }
+}
+@media(min-width: 1024px){
+    .container{
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .items{
+        height: 55vh;
+    }
+
+    .description h2{
+        font-size: 1rem;
+    }
+    .description p{
+        font-size: 0.9rem;
+    }
+    .description h4{
+        font-size: 0.9rem;
+    }
+
+    .head h1{
+        font-size: 1.4rem;
+        /* letter-spacing: -1px; */
+        font-weight: 600;
+    }
+    .head p{
+        font-size: 0.8rem;
+    }
+}
+
+
+
