@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    margin: 50px;
+    width: 60vw;
+    height: 70vh;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.child{
+    /* background-color: yellow; */
+}
+
+.child-1{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* background-color: red; */
+    background-image: url(https://plus.unsplash.com/premium_photo-1673757121102-0ca51260861f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fG1vZGVsfGVufDB8fDB8fHww);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-2{
+    /* grid-column-start: 3; */
+    /* background-color: red; */
+    background-image: url(https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-3{
+    /* grid-column-start: 4; */
+    /* background-color: red; */
+    background-image: url(https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9kZWwlMjBmYWNlfGVufDB8fDB8fHww);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-4{
+    /* grid-column-start: 3; */
+    /* background-color: red; */
+    background-image: url(https://plus.unsplash.com/premium_photo-1669703777739-006d5693617f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-5{
+    /* grid-column-start: 4; */
+    /* background-color: red; */
+    background-image: url(https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-6{
+    
+    /* background-color: red; */
+    background-image: url(https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-7{
+    /* grid-column-start: 2;
+    grid-row-start: 3; */
+    /* background-color: red; */
+    background-image: url(https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9kZWwlMjBmYWNlfGVufDB8fDB8fHww);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-8{
+    /* grid-column-start: 1;
+    grid-row-start: 4; */
+    /* background-color: red; */
+    background-image: url(https://plus.unsplash.com/premium_photo-1669703777739-006d5693617f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-9{
+    /* grid-column-start: 2;
+    grid-row-start: 4; */
+    /* background-color: red; */
+    background-image: url(https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+.child-10{
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    /* background-color: red; */
+    background-image: url(https://plus.unsplash.com/premium_photo-1669703777695-f8052a432411?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bW9kZWx8ZW58MHx8MHx8fDA%3D);
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+
+@media(mix-width: 1024px){
+    
+}
