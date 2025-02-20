@@ -1,0 +1,13 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* First 3 columns fixed at 100px */
+    grid-auto-flow: column; /* Items placed top to bottom */
+    grid-auto-columns: 120px; /* Additional columns will be 120px */
+    gap: 10px;
+}
+
+.grid-item {
+    background: lightblue;
+    padding: 20px;
+    text-align: center;
+}
