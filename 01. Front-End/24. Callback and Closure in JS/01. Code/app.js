@@ -35,4 +35,4 @@ Function is runing.................!!
 
 setInterval(()=>{
     fn()
-},1000)
+},1000) 
