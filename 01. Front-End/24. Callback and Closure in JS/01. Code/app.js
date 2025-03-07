@@ -13,6 +13,51 @@ function hello(fn){
 // })
 // f1()
 
+
+//Q2. Implement your own version of .map as a higher order function. // Important
+
+let arr = [1,2,3,4,5,6]
+
+function mapKiCopy(arr, fn){
+    let newArray = []
+
+    for(let i=0 ; i< arr.length; i++){
+        newArray.push(fn(arr[i]))
+    }
+
+    return newArray
+}
+
+let ans = mapKiCopy(arr, function(value){
+    return value + 2
+})
+
+// console.log("New Array is : ", ans);
+
+
+// Explanation Step by Step - 
+// Step-1 : Ek function banao jo ki accept kare array and accept kare ki kya chalana hai har value par 
+
+
+// Q3. Write a function that uses closures to create a counter
+
+function counter(fn){
+    let count = 0 
+
+    return function(){
+        count++
+        console.log(count);
+    }
+}
+
+let count = counter()
+
+count()
+count()
+count()
+count()
+
+// Q4. Implement a function that limits how many times another function can be called (closure + HOF)
 function hello1(fn){
     let time = 0
     
@@ -27,12 +72,12 @@ function hello1(fn){
     }
 }
 
-let fn = hello1(function(){
-    console.log(`
-Function is runing.................!!
-        `)
-})
+// let fn = hello1(function(){
+//     console.log(`
+// Function is runing.................!!
+//         `)
+// })
 
-setInterval(()=>{
-    fn()
-},1000)
+// setInterval(()=>{
+//     fn()
+// },1000)
