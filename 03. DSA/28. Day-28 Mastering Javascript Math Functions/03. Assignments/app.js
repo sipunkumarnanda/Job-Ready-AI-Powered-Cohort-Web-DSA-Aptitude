@@ -77,3 +77,62 @@ for (const element of x) {
     console.log(element);
     console.log(obj[element]);
 }
+
+
+
+// ----------------------------
+// Q2. write a program to accept rating of the movie as double and movie name as string.
+
+// let name = prompt("Enter Movie Name : ")
+// let rating = Number(prompt("Enter Movie's Rating : ")).toFixed(1)
+
+// // console.log(name , rating);
+
+// if(rating <= 2.0){
+//     console.log(`${name} - ${rating} - Flop`);
+// }else if(rating <= 3.4){
+//     console.log(`${name} - ${rating} - Semi-hit`);
+// }else if(rating <= 4.5){
+//     console.log(`${name} - ${rating} - Hit`);
+// }else{
+//     console.log(`${name} - ${rating} - Super-Hit`);
+// }
+
+
+
+
+
+
+
+// Q3. write a program to calculate the salary as per the following table 
+let gender = prompt("Enter your gender : ").toUpperCase()
+let experience = Number(prompt("Enter your experience in year : "))
+let qualification = prompt("Enter your qualification").toUpperCase()
+
+let salary;
+
+if(gender == "MALE"){
+    console.log("You are male");
+    if(experience >= 10 && qualification == "POST-GRADUATE"){
+      salary = 15000
+    }else if(experience >= 10 && qualification == "GRADUATE"){
+       salary = 10000
+    }else if(experience < 10 && qualification == "POST-GRADUATE"){
+       salary = 10000
+    }else{
+        salary = 7000
+    }
+}else{
+    console.log("You are female");
+    if(experience >= 10 && qualification == "POST-GRADUATE"){
+        salary = 12000
+    }else if(experience >= 10 && qualification == "GRADUATE"){
+        salary = 9000
+    }else if(experience < 10 && qualification == "POST-GRADUATE"){
+        salary = 10000
+    }else{
+        salary = 6000
+    }
+}
+
+console.log(`Gender : ${gender} Year of Ecperience : ${experience} Qualification : ${qualification}  , And Your Salary is : ${salary}`);
