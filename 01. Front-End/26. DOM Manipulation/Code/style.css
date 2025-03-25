@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-family: "Helvetica";
+   
+}
+
+
+.box-3{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 10px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.box-z{
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0rem;
+}
+#card{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+}
+
+h3{
+    color: red;
+}
