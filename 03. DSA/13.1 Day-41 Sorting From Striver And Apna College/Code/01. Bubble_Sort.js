@@ -1,5 +1,4 @@
-// let arr = [4, 1, 5, 2, 3]
-let arr = [1,2,3,4,5]
+let arr = [4, 1, 5, 2, 3]
 
 for(let j=0; j<arr.length-1; j++){
     let isSwap = false
@@ -14,7 +13,7 @@ for(let j=0; j<arr.length-1; j++){
     }
 
     if(!isSwap){
-        console.log("Array is alreday sorted");
+        console.log("Now Array is sorted");
         break
     }
 }
