@@ -1,0 +1,12 @@
+// What is oops 
+// Objects ko create karna jo ki sirf data hold naa kare unki functionality bhi hold kare , aur aise object ko create karna with blueprint model 
+
+
+// karna kya hota hai ? 
+// hum ek class banayenge us class se koi saare objects banenge ab wo har object kuch data hold karega and kucgg functionalities bhi hold karega jisko hum uske methods kahete hai , ye sab manually na karna pade ki hum ke concept follow karte hai 
+
+
+
+// kyu karna hai ? 
+// clean code / modular code likhne ke liye 
+
