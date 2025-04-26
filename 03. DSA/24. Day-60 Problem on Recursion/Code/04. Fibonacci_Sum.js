@@ -1,18 +1,11 @@
 
-// Fibonacci nth term sum by using recursion
+// Fibonacci sum upto nth term 
 
-let sum = 0
-function fibonacci(term, first, second){
-    if(first == 0 && second == 1){
-        sum += first + second
-    }
+function fiboNthTerm(n){
+    if(n == 0) return 0
+    if(n == 1) return 1
 
-    if(term == 0) return 
-
-    let third = first + second
-    sum += third
-    fibonacci(term-1, second, third)
+    return fiboNthTerm(n-1) + fiboNthTerm(n-2)
 }
 
-fibonacci(5-2, 0, 1)
-console.log(sum);
+console.log(fiboNthTerm(6));
