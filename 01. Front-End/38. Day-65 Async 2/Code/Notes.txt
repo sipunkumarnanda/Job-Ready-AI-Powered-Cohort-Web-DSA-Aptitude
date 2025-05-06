@@ -1,0 +1,15 @@
+
+// async js 
+
+// Code do prakaar ka hota hai -> sync async 
+// sync code turant chalta hai
+// async code baad mein chalta hai 
+
+// (Call stack also known as Main Thread )
+
+// async code sabse pehele jaata hai webAPis pe , jab waha par ye resolve hojaata hai , tab ye code jaata hai callback queue and fir event loop check karta hai main thread mein call stack khaali hua ya nahi and agar hua ta main thread un stack par rah rahe execution contexts ko execute karta hai 
+
+// if code is sync Then , first code goes to call stack then goes to Main Thread for exection 
+
+// sync -> call stack -> main thread execution
+// async -> webAPIs -> callback queue -> (if call stack empty) -> call stack -> main thread 
