@@ -1,4 +1,5 @@
 
+// Showing variable on view 
 const App = (()=>{
   let n = 12;
   let s = 'hello world' ;
@@ -24,4 +25,4 @@ const App = (()=>{
   </>)
 })
 
-export default App
+// export default App

@@ -10,13 +10,14 @@ export const Json_rendering = () => {
 
     let updatedProfiles = profiles.map((profile, index)=>{
         return (
-            <li>
+            <li key={index}>
             <span>Name : {profile.name} </span> | 
             <span>Age : {profile.age} </span>
         </li>
         )
     })
 
+    console.log(updatedProfiles);
   return (
     <>
     <h1>Rendering Json</h1>
