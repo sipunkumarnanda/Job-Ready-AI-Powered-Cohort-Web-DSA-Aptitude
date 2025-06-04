@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { recipesContext } from "../context/RecipeContext";
 import { useForm } from "react-hook-form";
 import { themeContex } from "../context/RecipeContext";
@@ -14,6 +14,7 @@ const SingleRecipe = () => {
   const recipe = data?.find((r) => {
     return param.id == r.id;
   });
+
   const {
     register,
     handleSubmit,
@@ -35,52 +36,70 @@ const SingleRecipe = () => {
     const copyData = [...data];
     copyData[index] = { ...copyData[index], ...recipe };
     setData(copyData);
-    localStorage.setItem("recipes", JSON.stringify(copyData))
+    localStorage.setItem("recipes", JSON.stringify(copyData));
     toast.success("Recipe Updated !");
   };
 
   const DeleteHandler = () => {
     const filterData = data.filter((r) => r.id != param.id);
     setData(filterData);
-    localStorage.setItem("recipes", JSON.stringify(filterData))
+    localStorage.setItem("recipes", JSON.stringify(filterData));
+    const DeleteFev = favorite.filter((f) => f.id != recipe?.id);
+    setFavorite(DeleteFev);
+    localStorage.setItem("fav", JSON.stringify(DeleteFev));
     toast.success("Recipe Deleted successfully !");
     navigate("/recipes");
   };
 
+  const [favorite, setFavorite] = useState(
+    JSON.parse(localStorage.getItem("fav")) || []
+  );
 
-    useEffect(()=>{
-      console.log("SingleRecipe.jsx mounted");
-  
-      return () =>{
-        console.log("SingleRecipe.jsx unmounted");
-      }
-    }, [])
+  const FavHandler = () => {
+    let copyFav = [...favorite];
+    copyFav.push(recipe);
+    setFavorite(copyFav);
+    localStorage.setItem("fav", JSON.stringify(copyFav));
+  };
 
-    const favorite = JSON.parse(localStorage.getItem("fav"))  || [] ;
+  const UnFavHandler = () => {
+    const filterFav = favorite.filter((f) => f.id != recipe?.id);
+    setFavorite(filterFav);
+    localStorage.setItem("fav", JSON.stringify(filterFav));
+  };
 
-    const FavHandler = () =>{
-      favorite.push(recipe)
-      localStorage.setItem("fav", JSON.stringify(favorite))
-    }
+  useEffect(() => {
+    console.log("SingleRecipe.jsx mounted");
 
-    const UnFavHandler = () =>{
-      console.log(favorite);
-    }
-  
+    return () => {
+      console.log("SingleRecipe.jsx unmounted");
+    };
+  }, [favorite]);
 
   return recipe ? (
     <div className="max-w-5xl mx-auto p-4 rounded-2xl flex flex-col md:flex-row gap-6 transition-all duration-300">
       <div className="md:w-1/2 w-full flex flex-col gap-4  border p-8 rounded mb-10 relative">
+        {favorite.find((f) => f.id == recipe.id) ? (
+          <i
+            onClick={UnFavHandler}
+            className="absolute right-[6%] ri-heart-fill text-6xl text-red-400"
+          ></i>
+        ) : (
+          <i
+            onClick={FavHandler}
+            className="absolute right-[6%] ri-heart-line text-6xl text-red-400"
+          ></i>
+        )}
 
-      {recipe in favorite ?<i onClick={UnFavHandler} className="absolute right-[6%] ri-heart-fill text-6xl text-red-400"></i> :  <i onClick={FavHandler} className="absolute right-[6%] ri-heart-line text-6xl text-red-400"></i>}
-      
         <img
           className="w-2/3 h-40 md:h-[200px] object-cover rounded-xl"
           src={recipe?.image}
           alt={recipe?.title}
         />
         <h1 className="text-3xl font-bold">{recipe?.title}</h1>
-        <h2 className="text-xl font-semibold text-red-500">By {recipe?.chef}</h2>
+        <h2 className="text-xl font-semibold text-red-500">
+          By {recipe?.chef}
+        </h2>
         <h3 className="text-lg italic">{recipe?.category}</h3>
         <p>
           <span className="font-bold">Ingredients:</span> {recipe?.ingredients}
@@ -189,7 +208,9 @@ const SingleRecipe = () => {
         </form>
       </div>
     </div>
-  ) : "No data Available"
+  ) : (
+    "No data Available"
+  );
 };
 
 export default SingleRecipe;
