@@ -1,6 +1,7 @@
 
 import axios from "../../api/axiosconfig";
 import { loaduser, removeuser } from "../reducers/userSlice";
+import {toast} from "react-toastify"
 
 
 
@@ -19,14 +20,16 @@ export const asyncloginuser = (user) => async (dispatch, getState) => {
     const res = await axios.get(
       `/users?email=${user.email}&password=${user.password}`
     );
-    console.log(res);
+    // console.log(res);
     const loggedInUser = res.data[0];
     if (loggedInUser) {
-      console.log("User found:", res.data[0]);
+    //   console.log("User found:", res.data[0]);
+    //  toast.success("Login Successfully")
       localStorage.setItem("user", JSON.stringify(res.data[0]));
       dispatch(loaduser(loggedInUser));
     }else{
         console.log("Invalid credentials");
+         toast.error("Wrong credential !")
     }
   } catch (error) {
     console.log(error);
@@ -56,6 +59,7 @@ export const asynclogoutuser = () => async (dispatch, getState) => {
     localStorage.removeItem("user")
     dispatch(removeuser())
     console.log("User Logged out");
+    toast.error("Log out Successfully")
     } catch (error) {
         console.log(error);
     }

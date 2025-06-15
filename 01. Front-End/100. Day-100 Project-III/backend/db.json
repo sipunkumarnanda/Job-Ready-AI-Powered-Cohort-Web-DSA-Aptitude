@@ -9,11 +9,11 @@
       "cart": [
         {
           "productId": "EVXqPgjvTw",
-          "quantity": 3
+          "quantity": 1
         },
         {
           "productId": "1",
-          "quantity": 2
+          "quantity": 1
         }
       ]
     },
@@ -26,7 +26,7 @@
       "cart": [
         {
           "productId": "EVXqPgjvTw",
-          "quantity": 4
+          "quantity": 9
         },
         {
           "productId": "1",

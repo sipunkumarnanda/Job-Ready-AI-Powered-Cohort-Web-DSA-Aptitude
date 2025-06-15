@@ -8,6 +8,8 @@ import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import {asyncupdateproduct} from "../../store/actions/productActions"
 import {asyncdeleteproduct} from "../../store/actions/productActions"
+import {asyncupdateuser} from "../../store/actions/userActions"
+import {toast} from "react-toastify"
 
 const ProductDetails = () => {
   const navigate = useNavigate()
@@ -16,8 +18,8 @@ const ProductDetails = () => {
   // console.log(id);
   const products = useSelector((state) => state.productReducer.products)
  const users = useSelector((state) => state.userReducer.users);
-  console.log(products);
-  console.log(users?.isAdmin);
+  // console.log( "Products : ",products);
+  // console.log("Admin : ",users?.isAdmin);
 
   const product = products?.find((prod)=>{
     return prod.id == id
@@ -59,6 +61,32 @@ const ProductDetails = () => {
 
 
   
+    // Add to cart feature 
+  
+    const AddtoCartHandler = (id) => {
+      if(users){
+          const copyuser = {...users, cart : [...users.cart]}
+      const x = copyuser.cart.findIndex((c) => c.productId == id)
+      console.log(x);
+      
+      if(x == -1){
+        copyuser.cart.push({productId : id , quantity : 1})
+      }else{
+        copyuser.cart[x] = {
+          productId : id , 
+          quantity : copyuser.cart[x].quantity + 1 
+        }
+      }
+  
+      dispatch(asyncupdateuser(copyuser))
+      }else{
+        toast.error("please Log in")
+        navigate("/login")
+      }
+    }
+
+
+  
   if(!users || users?.isAdmin == false) return product ? (
     <>
   <div className="border max-w-3xl mx-auto p-4 rounded-lg shadow-sm flex flex-col md:flex-row gap-4">
@@ -77,7 +105,8 @@ const ProductDetails = () => {
 
     <div className="flex items-center justify-between mt-4">
       <h2 className="text-2xl font-bold text-green-600">${product.price}</h2>
-      <button className="px-5 py-1.5 text-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition">
+
+      <button type='button' onClick={() => AddtoCartHandler(product.id)} className="px-5 py-1.5 text-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition">
         Add to Cart
       </button>
     </div>
@@ -104,7 +133,7 @@ const ProductDetails = () => {
 
     <div className="flex items-center justify-between mt-4">
       <h2 className="text-2xl font-bold text-green-600">${product.price}</h2>
-      <button className="px-5 py-1.5 text-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition">
+      <button onClick={() => AddtoCartHandler(product.id)} className="px-5 py-1.5 text-sm rounded-md bg-indigo-600 text-white hover:bg-indigo-700 transition">
         Add to Cart
       </button>
     </div>

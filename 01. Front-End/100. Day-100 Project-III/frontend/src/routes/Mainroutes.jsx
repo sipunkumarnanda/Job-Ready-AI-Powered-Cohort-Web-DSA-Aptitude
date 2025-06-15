@@ -9,6 +9,7 @@ import ProductDetails from '../pages/admin/ProductDetails'
 import PageNotFound from '../PageNotFound'
 import UserProfile from '../pages/user/UserProfile'
 import UpdateUserProfile from '../pages/user/UpdateUserProfile'
+import Cart from "../pages/Cart"
 
 import AuthWrapper from './AuthWrapper';
 
@@ -47,6 +48,15 @@ const Mainroutes = () => {
           </AuthWrapper>
         }
       />
+      <Route
+        path='/cart'
+        element={
+          <AuthWrapper role="auth">
+            <Cart/>
+          </AuthWrapper>
+        }
+      />
+
       <Route
         path='/user-profile/update-user-profile'
         element={

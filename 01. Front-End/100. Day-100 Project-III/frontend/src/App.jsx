@@ -18,7 +18,7 @@ const App = () => {
  
 
   return (
-    <div className="text-white font-thin min-h-screen w-full bg-gray-800 pb-10">
+    <div className="text-white font-thin min-h-screen w-full bg-gray-900 pb-10">
       <Nav/>
       <Mainroutes/>
       <ToastContainer />

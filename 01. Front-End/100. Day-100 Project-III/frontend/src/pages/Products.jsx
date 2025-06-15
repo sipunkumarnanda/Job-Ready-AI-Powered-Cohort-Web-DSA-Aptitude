@@ -17,6 +17,9 @@ const Products = () => {
   //   productReducer : {products}
   // } = useSelector((state) => state)
 
+
+  // Add to cart feature 
+
   const users = useSelector((state) => state.userReducer.users);
   const products = useSelector((state) => state.productReducer.products);
 
@@ -28,11 +31,13 @@ const Products = () => {
     
     if(x == -1){
       copyuser.cart.push({productId : id , quantity : 1})
+      toast.success("Added to cart successfully")
     }else{
       copyuser.cart[x] = {
         productId : id , 
         quantity : copyuser.cart[x].quantity + 1 
       }
+      toast.success("Added to cart successfully")
     }
 
     dispatch(asyncupdateuser(copyuser))
