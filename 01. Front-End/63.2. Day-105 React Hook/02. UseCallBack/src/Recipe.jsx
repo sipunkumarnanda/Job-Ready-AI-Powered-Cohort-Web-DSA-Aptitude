@@ -1,10 +1,16 @@
 
-import React from 'react'
+import React, { memo } from 'react'
 
-const Recipe = () => {
+const Recipe = ({ing}) => {
+  console.log("Hello from Recipe component");
+  // console.log(ing);
   return (
-    <div>Recipe</div>
+  <>
+    <div className='text-2xl'>Recipe</div>
+    <h1>{ing()}</h1>
+  </>
   )
 }
 
-export default Recipe
+
+export default memo(Recipe)
