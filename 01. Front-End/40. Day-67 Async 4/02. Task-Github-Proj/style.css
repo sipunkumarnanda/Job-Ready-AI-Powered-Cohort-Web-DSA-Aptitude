@@ -1,0 +1,46 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}
+
+button{
+    padding: 10px;
+}
+
+form input{
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.card{
+    width: 250px;
+    background-color: #fff;
+    color: black;
+    border: 1px solid gray;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+.card img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card h1{
+    font-size: 1.2rem;
+}
