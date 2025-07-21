@@ -1,0 +1,22 @@
+
+.mood-element{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 30%;
+    padding-left: 2rem;
+    margin-top: 2rem;
+}
+
+.mood-element button{
+   padding: 10px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.mood-element video{
+    height: 100%;
+    border-radius: 10px;
+}
