@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChatGPT Clone</title>
+  <link rel="stylesheet" href="/styles/theme.css">
+  <link rel="stylesheet" href="/styles/chat.css">
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Close button (mobile only) -->
+      <button class="close-btn" id="closeSidebar">✖</button>
+
+      <div class="sidebar-top">
+        <button class="new-chat-btn">+ New chat</button>
+      </div>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search chats..." />
+      </div>
+
+      <div class="chat-history">
+        <div class="history-item active">
+          <span class="history-icon">💬</span>
+          <span class="history-text">Temporary Chat</span>
+        </div>
+        <div class="history-item">
+          <span class="history-icon">💬</span>
+          <span class="history-text">Chat 2</span>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="library">Library</div>
+        <div class="settings">Settings</div>
+      </div>
+    </aside>
+
+    <!-- Chat Panel -->
+    <main class="chat-panel">
+      <!-- Mobile Navbar -->
+      <nav class="mobile-nav">
+        <button id="menuToggle" class="menu-btn">☰</button>
+      </nav>
+
+      <div class="messages" id="messages">
+        <div class="message user">
+          <div class="bubble">Hello, ChatGPT!</div>
+        </div>
+        <div class="message assistant">
+          <div class="bubble">Hi! How can I help you today?</div>
+        </div>
+      </div>
+
+      <div class="chat-composer">
+        <textarea id="composerInput" placeholder="Ask anything"></textarea>
+        <button class="send-btn">➤</button>
+        <button class="mic-btn">🎤</button>
+      </div>
+    </main>
+
+  </div>
+  <script src="/scripts/chat.js"></script>
+</body>
+</html>
