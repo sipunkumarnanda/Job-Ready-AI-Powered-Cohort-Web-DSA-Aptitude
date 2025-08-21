@@ -1,0 +1,153 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import './theme.css';
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 360px;
+  padding: calc(var(--spacing) * 2);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.register-container h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+}
+
+input {
+  padding: var(--spacing);
+  font-size: var(--font-size);
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  outline: none;
+}
+
+input::placeholder {
+  color: #b0b3b8;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+button {
+  padding: var(--spacing);
+  background-color: var(--primary-color);
+  color: white;
+  font-size: var(--font-size);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  opacity: 0.95;
+}
+
+.extra-links {
+  text-align: center;
+  margin-top: var(--spacing);
+}
+
+.extra-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+
+/* Keep all your previous styling from before */
+
+.already-account {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: var(--spacing);
+  color: var(--text-color);
+}
+
+.already-account a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.already-account a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .register-container {
+    max-width: 400px;
+  }
+}
+
+
+
+/* Login container uses same style as register */
+.login-container {
+  width: 100%;
+  max-width: 360px;
+  padding: calc(var(--spacing) * 2);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.login-container h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing);
+}
+
+/* "No account" link style */
+.no-account {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: var(--spacing);
+  color: var(--text-color);
+}
+
+.no-account a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.no-account a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    max-width: 400px;
+  }
+}
