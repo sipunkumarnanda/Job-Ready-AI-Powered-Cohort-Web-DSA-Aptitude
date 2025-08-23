@@ -1,7 +1,7 @@
 
 import http from 'http'
 import app from "./src/app.js";
-import connectToDB from '../backend/src/db/db.js'
+import connectToDB from './src/db/db.js'
 import setupSocketServer from "./src/socket/socket.server.js";
 
 const httpServer = http.createServer(app)

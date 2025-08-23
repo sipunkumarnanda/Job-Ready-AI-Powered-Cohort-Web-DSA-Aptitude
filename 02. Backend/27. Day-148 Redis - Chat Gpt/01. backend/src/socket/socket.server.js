@@ -17,6 +17,7 @@ function setupSocketServer(httpServer) {
          const result = await askAi(aiMemory)
 
         socket.emit("ai-message-response", result);
+        
          aiMemory.push({ role: "model", parts : [{text : result}] });
     })
 
