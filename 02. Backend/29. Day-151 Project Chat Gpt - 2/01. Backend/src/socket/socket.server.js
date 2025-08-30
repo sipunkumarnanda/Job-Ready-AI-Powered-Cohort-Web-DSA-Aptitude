@@ -5,6 +5,8 @@ import userModel from "../models/user.model.js";
 import generateResponse from "../services/ai.service.js";
 import messageModel from "../models/message.model.js";
 
+
+
 function initSocketServer(httpServer) {
   const io = new Server(httpServer, {});
 
@@ -44,12 +46,13 @@ function initSocketServer(httpServer) {
       // all old messages 
       // const chatHistory = await messageModel.find({
       //   chatId : messagePayload.chatId
-      // })
+      // }).sort({createdAt : -1}).limit(20).lean()).reverse()
 
       // last 4 messages / learn about this 
       const chatHistory = (await messageModel.find({
         chatId : messagePayload.chatId
       }).sort({createdAt : -1}).limit(20).lean()).reverse()
+
 
       const response = await generateResponse(chatHistory.map((item)=>{
         return {
