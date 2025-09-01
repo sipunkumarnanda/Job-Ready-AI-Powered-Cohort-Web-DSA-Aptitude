@@ -1,0 +1,116 @@
+
+.chatScreen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 80%;
+  margin: 0 auto;
+  flex: 1;
+  background: #1e1e1e; /* Dark background */
+  overflow: hidden; /* prevent horizontal overflow */
+}
+
+/* Messages Container */
+.chatScreen__messages {
+  flex: 1;
+  padding: 16px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden; /* 🔑 prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none;    /* Hide scrollbar for Firefox */
+}
+.chatScreen__messages::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+/* Empty State */
+.chatScreen__empty {
+  text-align: center;
+  color: #6b7280; /* Light gray text */
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Message Wrapper */
+.chatScreen__message {
+  display: flex;
+}
+
+/* Align User vs AI */
+.chatScreen__message.user {
+  justify-content: flex-end;
+}
+.chatScreen__message.ai {
+  justify-content: flex-start;
+}
+
+/* Message Bubble */
+.chatScreen__bubble {
+  display: inline-block;
+  max-width: 60%;               /* 🔑 bubble never wider than 60% */
+  padding: 10px 14px;
+  border-radius: 16px;
+  line-height: 1.4;
+  font-size: 14px;
+
+  /* 🔑 Wrapping fixes */
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap; /* preserve whitespace but allow wrapping */
+}
+
+/* User bubble */
+.chatScreen__message.user .chatScreen__bubble {
+  background: #2563eb; /* Blue bubble */
+  color: white;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+
+/* AI bubble */
+.chatScreen__message.ai .chatScreen__bubble {
+  background: #444654; /* Dark gray bubble */
+  color: #d1d5db;
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+}
+
+/* Simulated Sidebar Switcher */
+.chatScreen__switcher {
+  padding: 10px;
+  border-top: 1px solid #3f3f46; /* Dark border */
+  background: #444654; /* Dark background */
+  display: flex;
+  gap: 10px;
+  position: sticky;
+  bottom: 0;
+}
+.chatScreen__switcher button {
+  padding: 6px 12px;
+  border: 1px solid #3f3f46;
+  background: #343541;
+  color: #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.chatScreen__switcher button:hover {
+  background: #3f3f46;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .chatScreen {
+    width: 100%;
+    margin: 0;
+  }
+
+  .chatScreen__bubble {
+    max-width: 80%; /* allow bubbles to take more space on small screens */
+  }
+}

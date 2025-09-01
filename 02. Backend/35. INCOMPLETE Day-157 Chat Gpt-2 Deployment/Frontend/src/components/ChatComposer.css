@@ -1,0 +1,65 @@
+.chatComposer {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-top: 1px solid #1e1e1e; /* Dark border */
+  background: #1e1e1e; /* Dark background */
+  position: sticky;
+  bottom: 0;
+  width: 80%;
+  margin:  0 auto;
+  gap: 10px;
+}
+
+.chatComposer__input {
+  flex: 1;
+  resize: none;
+  border: 1px solid #3f3f46; /* Dark border */
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-size: 16px; /* Slightly larger font size */
+  outline: none;
+  max-height: 200px; /* Increased max height */
+  line-height: 1.6; /* Adjusted line height */
+  background: #1e1e1e; /* Dark input background */
+  color: #d1d5db; /* Light text */
+  overflow-y: auto; /* Enable scrolling if needed */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.chatComposer__input::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
+}
+
+.chatComposer__input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.chatComposer__send {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px; /* Slightly larger button */
+  height: 45px; /* Slightly larger button */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px; /* Slightly larger icon */
+  transition: background 0.2s;
+}
+
+.chatComposer__send:hover {
+  background: #1d4ed8;
+}
+
+
+@media (max-width: 768px) {
+  .chatComposer {
+    width: 100%;
+    margin: 0;
+  }
+}

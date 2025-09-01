@@ -1,0 +1,77 @@
+/* General container */
+.home {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--background-color); /* Use centralized theme variable */
+  color: var(--text-color); /* Use centralized theme variable */
+}
+
+/* Chat Area (right side) */
+.home__chatArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--form-background); /* Use centralized theme variable */
+}
+
+/* Sidebar (left side) */
+.home__sidebar {
+  width: 260px;
+  transition: transform 0.3s ease;
+}
+
+.home__sidebar.open {
+  transform: translateX(0);
+}
+
+/* Navbar (top) */
+.home__navbar {
+  display: none; /* Hide navbar by default */
+}
+
+.home__menuButton {
+  background: none;
+  border: none;
+  color: var(--text-color); /* Use centralized theme variable */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.home__menuButton.open {
+  content: "❌"; /* Display cross mark when sidebar is open */
+}
+
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+  }
+
+  .home__sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--background-color); /* Use centralized theme variable */
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .home__chatArea {
+    flex: 1;
+    height: 100vh;
+  }
+
+  .home__navbar {
+    display: flex; /* Show navbar only in mobile view */
+    align-items: center;
+    padding: 10px;
+    background: var(--form-background); /* Use centralized theme variable */
+  }
+
+  .home__menuButton {
+    display: block;
+  }
+}

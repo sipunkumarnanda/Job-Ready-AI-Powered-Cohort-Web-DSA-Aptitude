@@ -2,25 +2,18 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import axios from "axios";
+import Sidebar from "../components/Sidebar";
 
-const Register = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
+const Login = () => {
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false); // ✅ loading state
-  const [serverError, setServerError] = useState(""); // ✅ server error
+  const [serverError, setServerError] = useState(""); // ✅ show API error
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const validate = () => {
     let newErrors = {};
-
-    if (!formData.firstName) newErrors.firstName = "First name is required";
-    if (!formData.lastName) newErrors.lastName = "Last name is required";
 
     if (!formData.email) {
       newErrors.email = "Email is required";
@@ -30,8 +23,6 @@ const Register = () => {
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
     }
 
     setErrors(newErrors);
@@ -40,18 +31,14 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setServerError(""); // reset server error
+    setServerError(""); // reset error message
 
     if (validate()) {
       setSubmitting(true); // ✅ disable button
       try {
         const res = await axios.post(
-          "http://localhost:3000/api/auth/register",
+          "http://localhost:3000/api/auth/login",
           {
-            fullName : {
-              firstName: formData.firstName,
-            lastName: formData.lastName
-            },
             email: formData.email,
             password: formData.password,
           },
@@ -59,18 +46,14 @@ const Register = () => {
             withCredentials: true,
           }
         );
-
-        // console.log(res);
-
-        // ✅ Only navigate if backend confirms success
-        if (res.status === 201 || res.data.success) {
-          navigate("/");
-        }
+        localStorage.setItem("email", res.data.user.email)
+        localStorage.setItem("name", res.data.user.fullName.firstName + " " + res.data.user.fullName.lastName)
+        navigate('/')
+        // ✅ Redirect or store token here
       } catch (err) {
         console.error(err);
         setServerError(
-          err.response?.data?.message ||
-            "Registration failed. Please try again."
+          err.response?.data?.message || "Login failed. Please try again."
         );
       } finally {
         setSubmitting(false); // ✅ re-enable button
@@ -81,27 +64,7 @@ const Register = () => {
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
-
-        <label>First Name</label>
-        <input
-          type="text"
-          value={formData.firstName}
-          onChange={(e) =>
-            setFormData({ ...formData, firstName: e.target.value })
-          }
-        />
-        {errors.firstName && <p className="error">{errors.firstName}</p>}
-
-        <label>Last Name</label>
-        <input
-          type="text"
-          value={formData.lastName}
-          onChange={(e) =>
-            setFormData({ ...formData, lastName: e.target.value })
-          }
-        />
-        {errors.lastName && <p className="error">{errors.lastName}</p>}
+        <h2>Login</h2>
 
         <label>Email</label>
         <input
@@ -124,15 +87,15 @@ const Register = () => {
         {serverError && <p className="error">{serverError}</p>} {/* ✅ API error */}
 
         <button type="submit" disabled={submitting}>
-          {submitting ? "Registering..." : "Register"}
+          {submitting ? "Logging in..." : "Login"}
         </button>
 
         <p className="redirect-text">
-          Already have an account? <Link to="/login">Login</Link>
+          Don’t have an account? <Link to="/register">Register here</Link>
         </p>
       </form>
     </div>
   );
 };
 
-export default Register;
+export default Login;
