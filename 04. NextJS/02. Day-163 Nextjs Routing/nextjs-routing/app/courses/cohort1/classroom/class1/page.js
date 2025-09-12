@@ -4,7 +4,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-        <h6>Cohort1 Classroom</h6>
+        <h6>Class 1 of classroom of cohort 1</h6>
     </div>
   )
 }

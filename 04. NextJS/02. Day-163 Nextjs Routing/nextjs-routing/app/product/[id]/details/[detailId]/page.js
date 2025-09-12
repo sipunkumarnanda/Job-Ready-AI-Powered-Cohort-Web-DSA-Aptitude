@@ -4,10 +4,13 @@ import { useParams } from 'next/navigation'
 import React from 'react'
 
 const page = () => {
-    const {id} = useParams()
+    const params =  useParams()
+    console.log(params);
+
   return (
     <div>
-        <h6>{id}'s Product Details</h6>
+        <h6>{params.id}'s Product</h6>
+        <h6>{params.detailId}'s Detail</h6>
     </div>
   )
 }
