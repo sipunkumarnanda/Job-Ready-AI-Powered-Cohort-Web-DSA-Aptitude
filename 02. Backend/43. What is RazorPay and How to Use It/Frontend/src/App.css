@@ -1,0 +1,233 @@
+
+
+/* App.css - gray background + smaller product card */
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #161c28; /* light gray background */
+  color: #ffffff;
+}
+
+/* Page */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 18px;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Main */
+.main {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Product Card */
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  background: #342e4d;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  align-items: start;
+  max-width: 700px;  /* smaller width */
+  margin: 0 auto;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Image */
+.img-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 220px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Info */
+.info {
+  padding: 2px 6px;
+}
+.title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6fdf3c;
+  background: rgba(3, 105, 161, 0.06);
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+.brand {
+  margin: 6px 0;
+  color: #e3e3e3;
+  font-weight: 600;
+}
+.description {
+  margin: 0 0 10px 0;
+  color: #cbcbcb;
+  line-height: 1.45;
+  font-size: 14px;
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  color: #c9c9c9;
+  margin-bottom: 10px;
+}
+.stock.in { color: #6cff32; font-weight: 600; }
+.stock.out { color: #b91c1c; font-weight: 700; }
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.buy-btn {
+  background: linear-gradient(90deg, #06b6d4, #0369a1);
+  border: none;
+  color: rgb(236, 236, 236);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(3, 105, 161, 0.14);
+  font-size: 14px;
+}
+.buy-btn[disabled], .buy-btn[aria-disabled="true"] {
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.secondary {
+  background: transparent;
+  color: #0f172a;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+}
+.qty label {
+  font-size: 12px;
+  color: #ffffff;
+}
+.qty input {
+  width: 52px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+/* Reviews */
+.reviews {
+  margin-top: 10px;
+  border-top: 1px dashed #e5e7eb;
+  padding-top: 10px;
+  color: white;
+}
+.review {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.03);
+}
+.review:last-child { border-bottom: none; }
+.r-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.r-rating {
+  background: #fef3c7;
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+/* Error */
+.error {
+  margin-top: 8px;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  margin-top: 20px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 780px) {
+  .card {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    max-width: 100%;
+  }
+  .img-wrap { min-height: 180px; }
+  .title { font-size: 16px; }
+  .price { font-size: 14px; }
+}
