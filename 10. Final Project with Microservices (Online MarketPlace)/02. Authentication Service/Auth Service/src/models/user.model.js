@@ -8,6 +8,8 @@ const addressSchema = new mongoose.Schema({
     zip : String,
     country : String
 })
+
+
 const userSchema = new mongoose.Schema({
     username : {
         type  : String,

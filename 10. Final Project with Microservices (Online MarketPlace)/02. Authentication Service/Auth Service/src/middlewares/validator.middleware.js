@@ -12,7 +12,6 @@ const respondWithValidationErrors = (req, res, next) => {
 }
 
 
-
 const registerUserValidation = [
     body("username")
     .isString()
@@ -42,6 +41,61 @@ const registerUserValidation = [
     respondWithValidationErrors
 ]
 
+
+const loginUserValidation = [
+    body("email")
+    .optional()
+    .isEmail()
+    .withMessage("Invalid email address"),
+
+    body("username")
+    .optional()
+    .isString()
+    .withMessage("User name must be string"),
+
+    body("password")
+    .isLength({ min: 6 })
+    .withMessage("password must be at least 6 characters long"),
+
+    (req,res,next) => {
+        if(!req.body.email && !req.body.username){
+            return res.status(400).json({
+                errors : [ { msg : "Either email or username is required"}]
+            })
+        }
+        next()
+    },
+
+    respondWithValidationErrors
+]
+
+
+const addressUserValidator = [
+    body("street")
+    .isString()
+    .withMessage("Street must be string"),
+
+    body("city")
+    .isString()
+    .withMessage("city must be string"),
+
+    body("state")
+    .isString()
+    .withMessage("state must be string"),
+
+    body("zip")
+    .isString()
+    .withMessage("zip must be string"),
+
+    body("country")
+    .isString()
+    .withMessage("country must be string"),
+
+    respondWithValidationErrors
+]
+
 module.exports = {
-    registerUserValidation
+    registerUserValidation,
+    loginUserValidation,
+    addressUserValidator
 }
