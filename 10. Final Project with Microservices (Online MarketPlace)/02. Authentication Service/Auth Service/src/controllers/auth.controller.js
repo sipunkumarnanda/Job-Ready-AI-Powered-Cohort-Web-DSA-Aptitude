@@ -1,7 +1,8 @@
 const userModel = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const redis = require('../db/redis.js')
+const redis = require('../db/redis.js');
+
 
 async function registerUser(req, res) {
   try {
@@ -170,36 +171,49 @@ async function logoutUser(req, res) {
 
 async function addUserAddress(req, res) {
   try {
-    const { street, city, state, zip, country } = req.body;
-
-    const address = { street, city, state, zip, country };
+    const { street, city, state, zip, country, isDefault = false } = req.body;
 
     const id = req.user.id;
 
-    const user = await userModel.findById(id);
+    const user = await userModel.exists({ _id : id })
+     if(!user){
+      return res.status(404).json({
+        message : "user not found"
+      })
+    }
 
-    const alreadyExists = user.addresses.some((addr) => {
-      return (
-        addr.street === street &&
-        addr.city === city &&
-        addr.state === state &&
-        addr.zip === zip &&
-        addr.country === country
-      );
-    });
+      const alreadyExistsAddress = await userModel.exists({
+        _id: id,
+        "addresses.street": street,
+        "addresses.city": city,
+        "addresses.state": state,
+        "addresses.zip": zip,
+        "addresses.country": country,
+      });
 
-    if (alreadyExists) {
+    if (alreadyExistsAddress) {
       return res.status(409).json({
         message: "Address already exists",
       });
     }
 
-    user.addresses.push(address);
-    await user.save();
+     if(isDefault){
+      await userModel.updateOne({ _id : id }, {
+        $set : {
+          "addresses.$[].isDefault" : false
+        }
+      })
+    }
+
+    const updatedUser = await userModel.findOneAndUpdate({ _id : id }, {
+     $push  : {
+       addresses  : { street, city, state, zip, country, isDefault }
+      }
+    }, { new : true })
 
     res.status(201).json({
-      message: "Address add successfully",
-      address: user.addresses,
+      message: "Address added successfully",
+      address: updatedUser.addresses,
     });
   } catch (error) {
     console.error("Error in addUserAddress ", error);
@@ -209,10 +223,83 @@ async function addUserAddress(req, res) {
   }
 }
 
+async function getUserAddresses(req, res) {
+  try {
+    const id = req.user.id
+    const user = await userModel.findById(id).select("addresses").lean()
+
+    if(!user){
+      return res.status(404).json({
+        message : "user not found"
+      })
+    }
+
+    res.status(200).json({
+      message : "Addresses fetched successfully",
+      addresses : user.addresses
+    })
+  } catch (error) {
+    console.error("Error in get user addresses : ", error)
+    return res.status(500).json({
+      message : "Internal server error"
+    })
+  }
+}
+
+async function deleteUserAddress(req, res) {
+  try {
+    const { addressId } = req.query
+
+    if(!addressId){
+      return res.status(400).json({
+        message : "addressId is required"
+      })
+    }
+
+    const id = req.user.id
+    const user = await userModel.findById(id)
+
+    if(!user){
+      return res.status(404).json({
+        message : "user not found"
+      })
+    }
+
+  //   user.addresses = user.addresses.filter((address)=>{
+  //   // return address._id.toString() !== addressId
+  //   return !address._id.equals(addressId)
+  //  })
+
+  const result = await userModel.updateOne(
+    { _id: id, "addresses._id": addressId },
+    { $pull: { addresses: { _id: addressId  } } }
+  );
+
+   if(result.modifiedCount === 0){
+    return res.status(404).json({
+      message : "Address not found"
+    })
+   }
+
+    res.status(200).json({
+      message : "Address deleted successgully"
+    })
+
+
+  } catch (error) {
+    console.error("Error in delete user address ", error)
+    return res.status(500).json({
+      message : "Internal server error"
+    })
+  }
+}
+
 module.exports = {
   registerUser,
   loginUser,
   getCurrentUser,
   logoutUser,
-  addUserAddress
+  addUserAddress,
+  getUserAddresses,
+  deleteUserAddress
 };

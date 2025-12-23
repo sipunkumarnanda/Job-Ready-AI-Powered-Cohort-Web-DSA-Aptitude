@@ -19,7 +19,12 @@ router.get("/me", authMiddleware.authMiddleware, authControllers.getCurrentUser)
 router.get("/logout", authControllers.logoutUser)
 
 // POST /auth/address
-router.post('/address', authMiddleware.authMiddleware, validators.addressUserValidator, authControllers.addUserAddress )
+router.post('/users/me/addresses', authMiddleware.authMiddleware, validators.addressUserValidator, authControllers.addUserAddress )
 
+// GET /auth/users/me/addresses
+router.get('/users/me/addresses', authMiddleware.authMiddleware, authControllers.getUserAddresses )
+
+// Delete /auth/users/me/addresses/:addressId
+router.delete('/users/me/addresses', authMiddleware.authMiddleware, authControllers.deleteUserAddress)
 
 module.exports = router
