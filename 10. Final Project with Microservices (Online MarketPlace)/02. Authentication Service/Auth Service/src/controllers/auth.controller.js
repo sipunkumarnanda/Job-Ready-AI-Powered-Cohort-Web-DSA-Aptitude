@@ -6,7 +6,7 @@ const redis = require('../db/redis.js');
 
 async function registerUser(req, res) {
   try {
-    const { username, email, password, fullName: { firstName, lastName } } = req.body;
+    const { username, email, password, fullName: { firstName, lastName }, role = "user" } = req.body;
     
     // console.log(username, email, password, firstName, lastName);
 
@@ -27,6 +27,7 @@ async function registerUser(req, res) {
     email,
     password: hashedPassword,
     fullName: { firstName, lastName },
+    role
   });
   // console.log(user);
 
@@ -171,7 +172,7 @@ async function logoutUser(req, res) {
 
 async function addUserAddress(req, res) {
   try {
-    const { street, city, state, zip, country, isDefault = false } = req.body;
+    const { street, city, state, pincode, country, phone, isDefault } = req.body;
 
     const id = req.user.id;
 
@@ -187,8 +188,9 @@ async function addUserAddress(req, res) {
         "addresses.street": street,
         "addresses.city": city,
         "addresses.state": state,
-        "addresses.zip": zip,
+        "addresses.pincode": pincode,
         "addresses.country": country,
+        "addresses.phone" : phone
       });
 
     if (alreadyExistsAddress) {
@@ -207,13 +209,13 @@ async function addUserAddress(req, res) {
 
     const updatedUser = await userModel.findOneAndUpdate({ _id : id }, {
      $push  : {
-       addresses  : { street, city, state, zip, country, isDefault }
+       addresses  : { street, city, state, pincode, country, phone, isDefault }
       }
     }, { new : true })
 
     res.status(201).json({
       message: "Address added successfully",
-      address: updatedUser.addresses,
+      address: updatedUser.addresses[updatedUser.addresses.length-1]
     });
   } catch (error) {
     console.error("Error in addUserAddress ", error);
@@ -227,6 +229,8 @@ async function getUserAddresses(req, res) {
   try {
     const id = req.user.id
     const user = await userModel.findById(id).select("addresses").lean()
+
+    console.log(user);
 
     if(!user){
       return res.status(404).json({
@@ -248,7 +252,8 @@ async function getUserAddresses(req, res) {
 
 async function deleteUserAddress(req, res) {
   try {
-    const { addressId } = req.query
+    // const { addressId } = req.query
+    const {addressId} = req.params
 
     if(!addressId){
       return res.status(400).json({
@@ -270,19 +275,23 @@ async function deleteUserAddress(req, res) {
   //   return !address._id.equals(addressId)
   //  })
 
-  const result = await userModel.updateOne(
+  // await user.save()
+
+  const updatedUser = await userModel.findOneAndUpdate(
     { _id: id, "addresses._id": addressId },
-    { $pull: { addresses: { _id: addressId  } } }
+    { $pull: { addresses: { _id: addressId  } } },
+    { new : true }
   );
 
-   if(result.modifiedCount === 0){
+   if(!updatedUser){
     return res.status(404).json({
       message : "Address not found"
     })
    }
 
     res.status(200).json({
-      message : "Address deleted successgully"
+      message : "Address deleted successgully",
+      addresses : updatedUser.addresses
     })
 
 

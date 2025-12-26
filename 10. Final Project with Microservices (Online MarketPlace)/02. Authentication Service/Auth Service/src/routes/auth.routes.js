@@ -25,6 +25,6 @@ router.post('/users/me/addresses', authMiddleware.authMiddleware, validators.add
 router.get('/users/me/addresses', authMiddleware.authMiddleware, authControllers.getUserAddresses )
 
 // Delete /auth/users/me/addresses/:addressId
-router.delete('/users/me/addresses', authMiddleware.authMiddleware, authControllers.deleteUserAddress)
+router.delete('/users/me/addresses/:addressId', authMiddleware.authMiddleware, authControllers.deleteUserAddress)
 
 module.exports = router

@@ -5,8 +5,9 @@ const addressSchema = new mongoose.Schema({
     street : String,
     city : String,
     state : String,
-    zip : String,
+    pincode : String,
     country : String,
+    phone : String,
     isDefault : { type : Boolean, default : false }
 })
 
