@@ -3,6 +3,7 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const productRoutes = require('./routes/product.routes.js')
 
+
 const app = express()
 
 app.use(express.json())
