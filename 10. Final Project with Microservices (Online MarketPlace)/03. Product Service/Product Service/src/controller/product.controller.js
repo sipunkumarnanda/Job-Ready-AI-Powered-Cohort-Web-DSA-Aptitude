@@ -12,10 +12,10 @@ async function createProduct(req, res) {
         currency : priceCurrency
     }
 
-    const files = req.files
+    // const files = req.files
 
     const images = await Promise.all(
-        (files || []).map(file => {
+        (req.files || []).map(file => {
        return uploadImage({buffer : file.buffer})
     }))
 
