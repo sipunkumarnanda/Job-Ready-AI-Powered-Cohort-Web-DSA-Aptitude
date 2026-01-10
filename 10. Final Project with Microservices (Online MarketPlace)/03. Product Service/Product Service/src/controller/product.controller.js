@@ -118,10 +118,7 @@ if(!mongoose.Types.ObjectId.isValid(id)){
 }
 
  try {
- const product = await productModel.findOne({
-    _id : id,
-    seller : req.user.id
-  })
+ const product = await productModel.findById(id)
 
 if(!product){
   return res.status(404).json({
@@ -129,6 +126,11 @@ if(!product){
   })
 }
 
+if(product.seller.toString() !== req.user.id){
+  return res.status(403).json({
+    message : "you are not allowed to update this product"
+  })
+}
 const allowedUpdates = ['title', 'description', 'price']
 
 for (const key of Object.keys(req.body)) {
@@ -139,7 +141,7 @@ for (const key of Object.keys(req.body)) {
         product.price.amount = Number(req.body.price.amount);
       }
       if(req.body.price.currency !== undefined){
-        product.price.currency = Number(req.body.price.currency)
+        product.price.currency = req.body.price.currency
       }
     }else{
     product[key] = req.body[key]
@@ -149,7 +151,7 @@ for (const key of Object.keys(req.body)) {
 
 await product.save()
 
-return res.status(201).json({
+return res.status(200).json({
   message : "product upadted successfully",
   product
 })
