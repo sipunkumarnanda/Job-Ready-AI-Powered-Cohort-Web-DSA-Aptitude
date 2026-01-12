@@ -1,8 +1,6 @@
-
 const mongoose = require("mongoose");
 const productModel = require("../models/product.model.js");
-const { uploadImage } = require('../services/imagekit.service.js');
-
+const { uploadImage } = require("../services/imagekit.service.js");
 
 async function createProduct(req, res) {
   try {
@@ -10,32 +8,34 @@ async function createProduct(req, res) {
     const seller = req.user.id; // Extract seller from authenticated user
 
     const price = {
-        amount : Number(priceAmount),
-        currency : priceCurrency
-    }
+      amount: Number(priceAmount),
+      currency: priceCurrency,
+    };
 
     // const images = await Promise.all(
     //     (req.files || []).map(file => {
     //    return uploadImage({buffer : file.buffer})
     // }))
 
-    const files = req.files
-    const uploadImagePromises = files.map(async(file) => {
-      return await uploadImage({ buffer : file.buffer })
+    const files = req.files;
+    const uploadImagePromises = files.map(async (file) => {
+      return await uploadImage({ buffer: file.buffer });
     });
 
-    const images = await Promise.all(uploadImagePromises)
+    const images = await Promise.all(uploadImagePromises);
 
     const product = await productModel.create({
-        title, description, price, seller, images
-    })
+      title,
+      description,
+      price,
+      seller,
+      images,
+    });
 
     return res.status(201).json({
-        message : "Product created",
-        data : product
-    })
-
-
+      message: "Product created",
+      data: product,
+    });
   } catch (error) {
     console.error("Error occured in create product ", error);
     return res.status(500).json({
@@ -44,130 +44,132 @@ async function createProduct(req, res) {
   }
 }
 
-
-
 async function getProducts(req, res) {
-  const { q, minprice, maxprice, skip=0, limit=20 } = req.query;
+  const { q, minprice, maxprice, skip = 0, limit = 20 } = req.query;
 
-  const filter = {}
+  const filter = {};
 
-  if(q){
-    filter.$text = { $search: q}
+  if (q) {
+    filter.$text = { $search: q };
   }
 
-  if(minprice){
-    filter['price.amount'] = { ...filter['price.amount'], $gte: Number(minprice) }
+  if (minprice) {
+    filter["price.amount"] = {
+      ...filter["price.amount"],
+      $gte: Number(minprice),
+    };
   }
 
-  if(maxprice){
-    filter['price.amount'] = { ...filter['price.amount'], $lte: Number(maxprice)}
+  if (maxprice) {
+    filter["price.amount"] = {
+      ...filter["price.amount"],
+      $lte: Number(maxprice),
+    };
   }
 
   try {
-    const products = await productModel.find(filter).skip(Number(skip)).limit(Math.min(Number(limit),20))
+    const products = await productModel
+      .find(filter)
+      .skip(Number(skip))
+      .limit(Math.min(Number(limit), 20));
 
     return res.status(200).json({
-      message : "Products fetch successfully",
-      data : products
-    })
+      message: "Products fetch successfully",
+      data: products,
+    });
   } catch (error) {
     console.error("Error occurred in getProduct:", error);
     return res.status(500).json({
-      message: "Internal server error"
+      message: "Internal server error",
     });
   }
 }
 
-
-
 async function getProductById(req, res) {
   const { id } = req.params;
-  if(!mongoose.Types.ObjectId.isValid(id)){
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({
-      message : "Invalid product id"
-    })
+      message: "Invalid product id",
+    });
   }
   try {
-    const product = await productModel.findById(id)
-    if(!product){
+    const product = await productModel.findById(id);
+    if (!product) {
       return res.status(404).json({
-        message : "product not found"
-      })
+        message: "product not found",
+      });
     }
     return res.status(200).json({
-      message : "product fetch successfully",
-      data : product
-    })
+      message: "product fetch successfully",
+      data: product,
+    });
   } catch (error) {
-    console.error("Error occured in getProductById ", error)
+    console.error("Error occured in getProductById ", error);
     return res.status(500).json({
-      message : "Internal server error"
-    })
+      message: "Internal server error",
+    });
   }
 }
-
 
 async function updateProduct(req, res) {
-
   const { id } = req.params;
 
-if(!mongoose.Types.ObjectId.isValid(id)){
-  return res.status(400).json({
-    message : "Invalid product id"
-  })
-}
-
- try {
- const product = await productModel.findById(id)
-
-if(!product){
-  return res.status(404).json({
-    message : "product not found"
-  })
-}
-
-if(product.seller.toString() !== req.user.id){
-  return res.status(403).json({
-    message : "you are not allowed to update this product"
-  })
-}
-const allowedUpdates = ['title', 'description', 'price']
-
-for (const key of Object.keys(req.body)) {
-  if(allowedUpdates.includes(key)){
-    // here we checking price is object or not price : {amount : 20, currency : "INR"}
-    if(key === "price" && typeof req.body.price === "object"){
-      if(req.body.price.amount !== undefined){
-        product.price.amount = Number(req.body.price.amount);
-      }
-      if(req.body.price.currency !== undefined){
-        product.price.currency = req.body.price.currency
-      }
-    }else{
-    product[key] = req.body[key]
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      message: "Invalid product id",
+    });
   }
-  }
-}
 
-await product.save()
+  try {
+    const product = await productModel.findById(id);
 
-return res.status(200).json({
-  message : "product upadted successfully",
-  product
-})
-    
+    if (!product) {
+      return res.status(404).json({
+        message: "product not found",
+      });
+    }
+
+    if (product.seller.toString() !== req.user.id) {
+      return res.status(403).json({
+        message: "you are not allowed to update this product",
+      });
+    }
+
+    const allowedUpdates = ["title", "description", "price"];
+
+    for (const key of Object.keys(req.body)) {
+      if (allowedUpdates.includes(key)) {
+        // here we checking price is object or not price : {amount : 20, currency : "INR"}
+        if (key === "price" && typeof req.body.price === "object") {
+          if (req.body.price.amount !== undefined) {
+            product.price.amount = Number(req.body.price.amount);
+          }
+          if (req.body.price.currency !== undefined) {
+            product.price.currency = req.body.price.currency;
+          }
+        } else {
+          product[key] = req.body[key];
+        }
+      }
+    }
+
+    await product.save();
+
+    return res.status(200).json({
+      message: "product upadted successfully",
+      product,
+    });
   } catch (error) {
-    console.error("Error occured in updateProduct ", error)
+    console.error("Error occured in updateProduct ", error);
     return res.status(500).json({
-      message : "Internal server error"
-    })
+      message: "Internal server error",
+    });
   }
 }
-
 
 module.exports = {
   createProduct,
   getProducts,
   getProductById,
-  updateProduct
+  updateProduct,
 };
