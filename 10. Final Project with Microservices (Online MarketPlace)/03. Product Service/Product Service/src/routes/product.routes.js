@@ -14,6 +14,7 @@ const upload = multer({
 // POST  /api/products/ 
 router.post('/', createAuthMiddleware(['admin', 'seller']), upload.array('images', 5), productValidators.createProductValidators, productController.createProduct)
 
+// GET  /api/products/
 router.get('/', productValidators.getProductValidators, productController.getProduct)
 
 module.exports = router
